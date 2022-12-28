@@ -15,6 +15,10 @@
       "main"
     ]
   },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "typescript": "^4.9.4"
+  },
   "files": [
     "dist",
     "src"
@@ -34,10 +38,13 @@
   },
   "scripts": {
     "start": "start-storybook -p 6006",
-    "build": "TODO: implementar",
+    "build": "npm run clean && tsc && npm run styles && npm run assets",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "chromatic": "npx chromatic --project-token=fcdf569f4b81"
+    "chromatic": "npx chromatic --project-token=fcdf569f4b81",
+    "clean": "rm -rf ./dist",
+    "styles": "copyfiles -u 1 src/**/*.css dist/",
+    "assets": "copyfiles -u 1 src/stories/assets/** dist/"
   },
   "eslintConfig": {
     "extends": [
@@ -68,6 +75,7 @@
     "@storybook/react": "^6.5.15",
     "@storybook/testing-library": "^0.0.13",
     "babel-loader": "^8.3.0",
-    "chromatic": "^6.14.0"
+    "chromatic": "^6.14.0",
+    "copyfiles": "^2.4.1"
   }
 }
